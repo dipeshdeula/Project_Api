@@ -42,6 +42,8 @@ namespace Project_Api.Controllers
             {
                 Name = productDto.Name,
                 Description = productDto.Description,
+                Price = productDto.Price,
+                Quantity = productDto.Quantity,
                 ProductImage = productDto.ProductImage?.FileName
             };
 
@@ -65,6 +67,8 @@ namespace Project_Api.Controllers
                 Id = id,
                 Name = productDto.Name,
                 Description = productDto.Description,
+                Price = productDto.Price,
+                Quantity = productDto.Quantity,
                 ProductImage = productDto.ProductImage?.FileName
             };
 
