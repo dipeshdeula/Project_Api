@@ -14,6 +14,7 @@ namespace Project_Api.Mappers
             CreateMap<OrderItem, OrderItemDto>().ReverseMap();
             CreateMap<Cart, CartDto>().ReverseMap();
             CreateMap<CartItem,CartItemDto>().ReverseMap();
+            CreateMap<PaymentDto, Payment>();
 
         }
     }

@@ -12,8 +12,8 @@ using Project_Api.Data;
 namespace Project_Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250128092641_init4")]
-    partial class init4
+    [Migration("20250129064059_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -9,6 +9,7 @@ namespace Project_Api.Interfaces
         Task UpdateCartAsync(CartDto cartDto);
         Task DeleteCartAsync(int id);
         Task AddCartItemAsync(int customerId, CartItemDto cartItemDto);
+        Task UpdateCartItemAsync (int customerId, CartItemDto cartItemDto);
         Task<IEnumerable<CartItemDto>> GetCartItemsByCustomerIdAsync(int customerId);
 
 

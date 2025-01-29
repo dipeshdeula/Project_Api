@@ -34,19 +34,23 @@ namespace Project_Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddCustomer(CustomerDto customerDto)
-        { 
+        public async Task<ActionResult> AddCustomer([FromForm]CustomerDto customerDto)
+        {
+
             await _customerService.AddCustomerAsync(customerDto);
             return CreatedAtAction(nameof(GetCustomerById), new { id = customerDto.Id }, customerDto);
+           
+
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCustomer(int id, CustomerDto customerDto)
+        public async Task<IActionResult> UpdateCustomer([FromForm]int id, [FromForm]CustomerDto customerDto)
         { 
             if(id != customerDto.Id)
             {
                 return BadRequest();
             }
+
 
             await _customerService.UpdateCustomerAsync(customerDto);
             return NoContent();

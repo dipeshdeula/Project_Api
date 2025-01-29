@@ -8,15 +8,15 @@ namespace Project_Api.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
+      /*  [Required]*/
         public DateTime OrderDate { get; set; }
-        [Required]
+       /* [Required]*/
         public int CustomerId { get; set; }
 
         [ForeignKey("CustomerId")]
         public Customer Customer { get; set; }
 
-        [Required]
+        /*[Required]*/
         public string ShippingAddress { get; set; }
 
         public decimal TotalAmount { get; set; }

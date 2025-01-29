@@ -16,6 +16,9 @@ namespace Project_Api.Data
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
 
+        public DbSet<Payment> Payments { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Cart>()
@@ -49,7 +52,10 @@ namespace Project_Api.Data
             modelBuilder.Entity<Product>()
                 .Property(p => p.Price)
                 .HasColumnType("decimal(18,2)");
+
+            base.OnModelCreating(modelBuilder);
         }
+        
     }
 }
 

@@ -7,7 +7,7 @@ namespace Project_Api.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+       /* [Required]*/
         public int CustomerId { get; set; }
 
         [ForeignKey("CustomerId")]

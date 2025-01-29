@@ -26,6 +26,7 @@ namespace Project_Api.Repositries
         public async Task AddCustomerAsync(Customer customer)
         {
             await _context.Customers.AddAsync(customer);
+            //return Json(customer);
             await _context.SaveChangesAsync();
         }
 

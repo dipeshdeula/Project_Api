@@ -41,6 +41,8 @@ namespace Project_Api
             builder.Services.AddScoped<ICustomerService, CustomerService>();
             builder.Services.AddScoped<ICartRepository,CartRepository>();
             builder.Services.AddScoped<ICartService, CartService>();
+            builder.Services.AddScoped<IPaymentService, PaymentService>();
+            builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 
             // Add Logging
             builder.Logging.ClearProviders();

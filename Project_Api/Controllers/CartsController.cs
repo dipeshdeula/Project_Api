@@ -34,7 +34,7 @@ namespace Project_Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddCart([FromForm] CartDto cartDto)
+        public async Task<IActionResult> AddCart([FromBody] CartDto cartDto)
         {
             await _cartService.AddCartAsync(cartDto);
             _logger.LogInformation("Added cart for customer ID {CustomerId}", cartDto.CustomerId);
@@ -44,7 +44,7 @@ namespace Project_Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCart(int id, CartDto cartDto)
+        public async Task<IActionResult> UpdateCart(int id, [FromBody] CartDto cartDto)
         {
             if (id != cartDto.Id)
             {
@@ -69,13 +69,29 @@ namespace Project_Api.Controllers
         }
 
         [HttpPost("{customerId}/items")]
-        public async Task<ActionResult> AddCartItem([FromForm]int customerId, CartItemDto cartItemDto)
+        public async Task<ActionResult> AddCartItem(int customerId, [FromBody]CartItemDto cartItemDto)
         {
             await _cartService.AddCartItemAsync(customerId, cartItemDto);
             _logger.LogInformation("Added item to cart for customer ID {CustomerId}", customerId);
 
             return NoContent();
         }
+
+        [HttpPut("{customerId}/items/{itemId}")]
+        public async Task<IActionResult> UpdateCartItem(int customerId, int itemId, [FromBody] CartItemDto cartItemDto)
+        {
+            if (itemId != cartItemDto.Id)
+            {
+                _logger.LogWarning("Cart item ID mismatch: {ItemId} != {CartItemDtoId}", itemId, cartItemDto.Id);
+                return BadRequest();
+            }
+
+            await _cartService.UpdateCartItemAsync(customerId, cartItemDto);
+            _logger.LogInformation("Updated cart item ID {ItemId} for customer ID {CustomerId}", itemId, customerId);
+
+            return NoContent();
+        }
+
 
         [HttpGet("{customerId}/items")]
         public async Task<IActionResult> GetCartItemsByCustomerId(int customerId)

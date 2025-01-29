@@ -8,21 +8,21 @@ namespace Project_Api.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
+        /*[Required]*/
         public int OrderId { get; set; }
 
         [ForeignKey("OrderId")]
         public Order Order { get; set; }
-        [Required]
+        /*[Required]*/
         public int ProductId { get; set; }
 
         [ForeignKey("ProductId")]
         public Product Product { get; set; }
 
-        [Required]
+       /* [Required]*/
         public int Quantity { get; set; }
 
-        [Required]
+        /*[Required]*/
         public decimal Price { get; set; }
 
     }
