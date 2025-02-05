@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Project_Api.Dtos;
 using Project_Api.Interfaces;
@@ -14,6 +15,7 @@ namespace Project_Api.Controllers
         {
             _customerService = customerService;
         }
+        [Authorize(Roles ="Admin")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CustomerDto>>> GetAllCustomer()
         {
@@ -21,7 +23,7 @@ namespace Project_Api.Controllers
             return Ok(customers);
 
         }
-
+        [Authorize(Roles ="Admin,User")]
         [HttpGet("{id}")]
         public async Task<ActionResult<CustomerDto>> GetCustomerById(int id)
         {
@@ -33,6 +35,7 @@ namespace Project_Api.Controllers
             return Ok(customer);
         }
 
+        [Authorize(Roles="Admin")]
         [HttpPost]
         public async Task<ActionResult> AddCustomer([FromForm]CustomerDto customerDto)
         {
@@ -42,6 +45,7 @@ namespace Project_Api.Controllers
            
 
         }
+        [Authorize(Roles = "Admin")]
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCustomer([FromForm]int id, [FromForm]CustomerDto customerDto)

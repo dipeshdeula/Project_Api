@@ -16,7 +16,7 @@ namespace Project_Api.Repositries
 
         public async Task<Cart> GetCartByCustomerIdAsync(int customerId)
         {
-            return await _context.Carts.Include(C=>C.CartItems).FirstOrDefaultAsync(c => c.CustomerId == customerId);
+            return await _context.Carts.Include(C => C.CartItems).FirstOrDefaultAsync(c => c.CustomerId == customerId);
         }
 
 
@@ -43,7 +43,7 @@ namespace Project_Api.Repositries
 
         }
 
-       
-        
+
+
     }
 }

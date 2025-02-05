@@ -22,7 +22,7 @@ namespace Project_Api.Repositries
 
         public async Task<Order> GetOrderByIdAsync(int id)
         {
-            return await _context.Orders.Include(o=>o.OrderItems).FirstOrDefaultAsync(o => o.Id == id);
+            return await _context.Orders.Include(o => o.OrderItems).FirstOrDefaultAsync(o => o.Id == id);
         }
 
         public async Task<string> AddOrderAsync(Order order)
@@ -42,7 +42,7 @@ namespace Project_Api.Repositries
         public async Task<string> DeleteOrderAsync(int id)
         {
             var order = await _context.Orders.FindAsync(id);
-            if (order !=null)
+            if (order != null)
             {
                 _context.Orders.Remove(order);
                 await _context.SaveChangesAsync();
@@ -53,8 +53,8 @@ namespace Project_Api.Repositries
                 return "Order not found";
 
             }
-        }       
+        }
 
-       
+
     }
 }

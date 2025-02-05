@@ -15,14 +15,14 @@ namespace Project_Api.Repositries
 
         public async Task<IEnumerable<Customer>> GetllCustomersAsync()
         {
-           return await _context.Customers.ToListAsync();
+            return await _context.Customers.ToListAsync();
         }
         public async Task<Customer> GetCustomerByIdAsync(int id)
         {
             return await _context.Customers.FindAsync(id);
         }
 
-        
+
         public async Task AddCustomerAsync(Customer customer)
         {
             await _context.Customers.AddAsync(customer);

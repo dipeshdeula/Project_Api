@@ -3,6 +3,7 @@ using Project_Api.Interfaces;
 using AutoMapper;
 using Project_Api.Dtos;
 using Project_Api.Models;
+using Project_Api.Utilities;
 
 namespace Project_Api.Services
 {
@@ -10,11 +11,13 @@ namespace Project_Api.Services
     {
         private readonly ICustomerRepository _customerRepository;
         private readonly IMapper _mapper;
+        private readonly JwtTokenHelper _jwtTokenHelper;
 
-        public CustomerService(ICustomerRepository customerRepository, IMapper mapper)
+        public CustomerService(ICustomerRepository customerRepository, IMapper mapper, JwtTokenHelper jwtTokenHelper)
         {
             _customerRepository = customerRepository;
             _mapper = mapper;
+            _jwtTokenHelper = jwtTokenHelper;
 
         }
 
@@ -33,12 +36,14 @@ namespace Project_Api.Services
         public async Task AddCustomerAsync(CustomerDto customerDto)
         {
             var customer = _mapper.Map<Customer>(customerDto);
+            customer.Password = _jwtTokenHelper.HashPassword(customer.Password);
             await _customerRepository.AddCustomerAsync(customer);
         }
 
         public Task UpdateCustomerAsync(CustomerDto customerDto)
         {
             var customer = _mapper.Map<Customer>(customerDto);
+            customer.Password = _jwtTokenHelper.HashPassword(customer.Password);
             return _customerRepository.UpdateCustomerAsync(customer);
         }
         public async Task DeleteCustomerAsync(int id)

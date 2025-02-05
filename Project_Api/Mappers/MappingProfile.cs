@@ -8,6 +8,7 @@ namespace Project_Api.Mappers
     {
         public MappingProfile()
         {
+            CreateMap<Admin, AdminDto>().ReverseMap();
             CreateMap<Customer, CustomerDto>().ReverseMap();
             CreateMap<Product, ProductDto>().ReverseMap();
             CreateMap<Order, OrderDto>().ReverseMap();
